@@ -2,25 +2,29 @@
 
 import { useState } from "react";
 
-export default function GetQuotePage() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    projectType: "",
-    budget: "",
-    location: "",
-    message: "",
-  });
+const initialForm = {
+  name: "",
+  email: "",
+  phone: "",
+  projectType: "",
+  budget: "",
+  location: "",
+  message: "",
+};
 
-  const [errors, setErrors] = useState<any>({});
+type QuoteErrors = Partial<Record<keyof typeof initialForm, string>>;
+
+export default function GetQuotePage() {
+  const [form, setForm] = useState(initialForm);
+
+  const [errors, setErrors] = useState<QuoteErrors>({});
   const [loading, setLoading] = useState(false);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^[6-9]\d{9}$/;
 
   const validate = () => {
-    const e: any = {};
+    const e: QuoteErrors = {};
 
     if (!form.name.trim()) e.name = "Name is required";
     if (!emailRegex.test(form.email)) e.email = "Valid email required";
@@ -41,15 +45,7 @@ export default function GetQuotePage() {
     setTimeout(() => {
       setLoading(false);
       alert("Quote request submitted successfully!");
-      setForm({
-        name: "",
-        email: "",
-        phone: "",
-        projectType: "",
-        budget: "",
-        location: "",
-        message: "",
-      });
+      setForm(initialForm);
     }, 1500);
   };
 

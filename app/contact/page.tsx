@@ -2,22 +2,26 @@
 import { memo, useState } from 'react';
 import GoogleMap from '../components/GoogleMap';
 
-const Contact = () => {
-const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+const initialForm = {
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+};
 
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+type ContactErrors = Partial<Record<keyof typeof initialForm, string>>;
+
+const Contact = () => {
+  const [form, setForm] = useState(initialForm);
+
+  const [errors, setErrors] = useState<ContactErrors>({});
   const [loading, setLoading] = useState(false);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^[6-9]\d{9}$/;
 
   const validate = () => {
-    const e: any = {};
+    const e: ContactErrors = {};
 
     if (!form.name.trim()) e.name = "Name is required";
     if (!emailRegex.test(form.email))
@@ -38,7 +42,7 @@ const [form, setForm] = useState({
     setTimeout(() => {
       setLoading(false);
       alert("Message sent successfully!");
-      setForm({ name: "", email: "", phone: "", message: "" });
+      setForm(initialForm);
     }, 1500);
   };
 
@@ -99,7 +103,7 @@ const [form, setForm] = useState({
                 <span className="text-2xl">✉️</span>
                 <div>
                   <p className="font-semibold">Email</p>
-                  <p>info@aggassociate.com</p>
+                  <p>info@aagassociate.com</p>
                 </div>
               </div>
 

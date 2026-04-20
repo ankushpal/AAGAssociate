@@ -37,6 +37,7 @@ const Footer = () => {
             <li>🏢 Commercial Buildings</li>
             <li>🛣 Roads & Infrastructure</li>
             <li>🔧 Renovation & Repair</li>
+            <li>📹 Security Surveillance</li>
           </ul>
         </div>
 

@@ -33,6 +33,11 @@ const services = [
     icon: "📋",
     desc: "End-to-end planning, execution, and monitoring for seamless delivery.",
   },
+  {
+    title: "Complete Security Surveillance Solutions",
+    icon: "📹",
+    desc: "CCTV, monitoring, access control, and integrated security systems for safer sites and facilities.",
+  },
 ];
 const Services = () => {
   return (
